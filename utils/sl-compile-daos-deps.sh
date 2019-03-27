@@ -31,10 +31,12 @@
 #                |-- lib
 #                `-- share
 
+HOSTNAME=$(hostname -s)
+
 OPTS=(COMPILER=gcc \
       MERCURY_SRC=/home/yulujia/codes/mercury-github \
-      TARGET_PREFIX=/home/yulujia/codes/prebuilt-with-scons-local-boro-36 \
-      --build-config=/home/yulujia/codes/scons-local-build-boro-36/utils/build.config \
+      TARGET_PREFIX=/home/yulujia/codes/prebuilt-with-scons-local-$HOSTNAME \
+      --build-config=/home/yulujia/codes/scons-local-build-$HOSTNAME/utils/build.config \
       --config=force \
       --build-deps=yes \
       REQUIRES=pmdk,isal,spdk,fio,fuse,argobots,protobufc \

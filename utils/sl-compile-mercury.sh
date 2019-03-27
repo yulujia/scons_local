@@ -31,15 +31,17 @@
 #                |-- lib
 #                `-- share
 
+HOSTNAME=$(hostname -s)
+
 OPTS=(COMPILER=gcc \
       MERCURY_SRC=/home/yulujia/codes/mercury-github \
-      TARGET_PREFIX=/home/yulujia/codes/prebuilt-with-scons-local-boro-36 \
-      --build-config=/home/yulujia/codes/scons-local-build-boro-36/utils/build.config \
+      TARGET_PREFIX=/home/yulujia/codes/prebuilt-with-scons-local-$HOSTNAME \
+      --build-config=/home/yulujia/codes/scons-local-build-$HOSTNAME/utils/build.config \
       --config=force \
       --build-deps=yes \
       VERBOSE=1 \
       -j8 \
 )
 scons "${OPTS[@]}" -c
-rm -rf /home/yulujia/codes/prebuilt-with-scons-local-boro-36/mercury
+rm -rf /home/yulujia/codes/prebuilt-with-scons-local-$HOSTNAME/mercury
 scons "${OPTS[@]}" install REQUIRES=mercury | tee compile.log
