@@ -28,8 +28,12 @@ def scons():
     """Build requested prerequisite components"""
     env = DefaultEnvironment()
 
+    platform_node = os.uname()[0] + "-" +os.uname()[1].split('.', 1)[0]
+
+    print platform_node
+
     opts = Variables()
-    reqs = PreReqComponent(env, opts)
+    reqs = PreReqComponent(env, opts, arch=platform_node)
     reqs.load_definitions()
 
     opts.Add(ListVariable("REQUIRES",

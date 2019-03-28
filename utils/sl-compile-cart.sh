@@ -39,6 +39,7 @@ OPTS=(COMPILER=gcc \
       --build-config=/home/yulujia/codes/scons-local-build-$HOSTNAME/utils/build.config \
       --config=force \
       --build-deps=yes \
+      --update-prereq=cart \
       VERBOSE=1 \
       -j64 \
 )
