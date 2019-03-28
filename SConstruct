@@ -26,9 +26,22 @@ from prereq_tools import PreReqComponent
 
 def scons():
     """Build requested prerequisite components"""
+
+    short_hostname = os.uname()[1].split('.', 1)[0]
+    current_dir = os.path.basename(os.getcwd())
+    desired_dir = "scons-local-build-run-this-on-" + short_hostname
+
+    try:
+        if current_dir != desired_dir:
+            raise RuntimeError("Wrong machine.")
+    except Exception, err:
+        sys.stderr.write("ERROR: current_dir: " + current_dir +
+                         "\n       desired_dir: " + desired_dir + "\n\n\n")
+        return 1
+
     env = DefaultEnvironment()
 
-    platform_node = os.uname()[0] + "-" +os.uname()[1].split('.', 1)[0]
+    platform_node = os.uname()[0] + "-" + short_hostname
 
     print platform_node
 
@@ -54,4 +67,4 @@ def scons():
         Help(opts.GenerateHelpText(env))
 
 if __name__ == 'SCons.Script':
-    scons()
+    sys.exit(scons())

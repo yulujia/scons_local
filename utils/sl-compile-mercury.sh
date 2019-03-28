@@ -43,6 +43,4 @@ OPTS=(COMPILER=gcc \
       VERBOSE=1 \
       -j8 \
 )
-scons "${OPTS[@]}" -c
-#rm -rf /home/yulujia/codes/prebuilt-with-scons-local-$HOSTNAME/mercury
 scons "${OPTS[@]}" install REQUIRES=mercury | tee compile.log
