@@ -43,6 +43,5 @@ OPTS=(COMPILER=gcc \
       VERBOSE=1 \
       -j64 \
 )
-      # do not build-deps here to ensure it doesn't rebuild ompi
       # do not add cart here to ensure it doesn't rebuild ompi
 scons "${OPTS[@]}" install | tee compile-daos-deps.log
