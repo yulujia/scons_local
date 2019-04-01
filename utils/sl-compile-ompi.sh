@@ -31,16 +31,21 @@
 #                |-- lib
 #                `-- share
 
+set -e
+set -x
+
 HOSTNAME=$(hostname -s)
 
 OPTS=(COMPILER=gcc \
       MERCURY_SRC=/home/yulujia/codes/mercury-github \
       TARGET_PREFIX=/home/yulujia/codes/prebuilt-with-scons-local-$HOSTNAME \
-      --build-config=/home/yulujia/codes/scons-local-build-$HOSTNAME/utils/build.config \
+      --build-config=/home/yulujia/codes/scons-local-build-run-this-on-$HOSTNAME/utils/build.config \
       --config=force \
       --build-deps=yes \
-      --update-prereq=ompi \
+      --update-prereq=pmix,ompi \
       VERBOSE=1 \
       -j8 \
 )
+
+(cd /home/yulujia/codes/prebuilt-with-scons-local-$HOSTNAME; rm -rf ompi pmix; cd -)
 scons "${OPTS[@]}" install REQUIRES=ompi | tee compile-ompi.log
