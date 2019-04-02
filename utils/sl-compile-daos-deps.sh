@@ -44,4 +44,5 @@ OPTS=(COMPILER=gcc \
       -j64 \
 )
       # do not add cart here to ensure it doesn't rebuild ompi
+cd /home/yulujia/codes/prebuilt-with-scons-local-$HOSTNAME; rm -rf pmdk isal spdk fio fuse argobots protobufc; cd -
 scons "${OPTS[@]}" install | tee compile-daos-deps.log

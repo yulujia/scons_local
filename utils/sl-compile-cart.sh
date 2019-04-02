@@ -43,4 +43,6 @@ OPTS=(COMPILER=gcc \
       VERBOSE=1 \
       -j64 \
 )
+
+cd /home/yulujia/codes/prebuilt-with-scons-local-$HOSTNAME; rm -rf cart; cd -
 scons "${OPTS[@]}" install REQUIRES=cart | tee compile-cart.log
